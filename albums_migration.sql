@@ -2,12 +2,12 @@ use codeup_test_db;
 
 drop table if exists albums;
 
-create table albums (
+create table if not exists albums (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (id),
-  artist VARCHAR (50) NOT NULL,
-  name VARCHAR (50) NOT NULL,
+  artist VARCHAR (100) NOT NULL,
+  name VARCHAR (100) NOT NULL,
   release_date SMALLINT UNSIGNED,
+  genre VARCHAR (100),
   sales FLOAT(6, 2),
-  genre VARCHAR (100)
-);
+  PRIMARY KEY (id)
+  );
