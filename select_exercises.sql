@@ -1,7 +1,6 @@
 use codeup_test_db;
 
 SELECT 'Pink Floyd' AS 'All albums from:';
-
 SELECT name
 FROM albums
 WHERE artist = 'Pink Floyd';
