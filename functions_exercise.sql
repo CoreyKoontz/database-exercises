@@ -60,7 +60,7 @@ WHERE month(birth_date) = 12
 
 
 -- TODO: Find all employees hired in the 90s and born on Christmas — 362 rows.
-SELECT *, DATEDIFF(hire_date, CURDATE()) AS 'Days Worked'
+SELECT *, DATEDIFF(CURDATE(), hire_date) AS 'Days Worked'
 FROM employees
 WHERE year(hire_date) BETWEEN 1990 AND 1999
   AND month(birth_date) = 12
