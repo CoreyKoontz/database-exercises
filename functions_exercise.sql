@@ -76,3 +76,9 @@ WHERE year(hire_date) BETWEEN 1990 AND 1999
   AND month(birth_date) = 12
   AND day(birth_date) = 25
 ORDER BY birth_date, hire_date DESC;
+
+
+SELECT COUNT(gender), gender
+FROM employees
+WHERE first_name = 'Irena'
+GROUP BY gender;
