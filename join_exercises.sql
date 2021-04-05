@@ -1,7 +1,8 @@
 USE employees;
 
 -- TODO: Show each department along with the name of the current manager for that department.
-SELECT d.dept_name AS 'Department Name', CONCAT(e.first_name, ' ', e.last_name) AS 'Department Manager'
+SELECT d.dept_name                            AS 'Department Name',
+       CONCAT(e.first_name, ' ', e.last_name) AS 'Department Manager'
 FROM employees as e
          JOIN dept_manager as dm
               ON dm.emp_no = e.emp_no
@@ -11,13 +12,14 @@ WHERE dm.to_date = '9999-01-01'
 ORDER BY d.dept_name;
 
 -- TODO: Find the name of all departments currently managed by women.
-SELECT d.dept_name AS 'Department Name', CONCAT(e.first_name, ' ', e.last_name) AS 'Department Manager'
+SELECT d.dept_name                            AS 'Department Name',
+       CONCAT(e.first_name, ' ', e.last_name) AS 'Department Manager'
 FROM employees as e
          JOIN dept_manager as dm
               ON dm.emp_no = e.emp_no
          JOIN departments as d
               ON d.dept_no = dm.dept_no
-WHERE dm.to_date = '9999-01-01'
+WHERE dm.to_date > now()
   AND e.gender = 'f'
 ORDER BY d.dept_name;
 
@@ -30,7 +32,7 @@ FROM titles AS t
               ON de.emp_no = e.emp_no
          JOIN departments AS d
               ON d.dept_no = de.dept_no
-WHERE t.to_date = '9999-01-01'
+WHERE t.to_date > now()
   AND d.dept_name = 'Customer Service'
 GROUP BY t.title;
 
@@ -51,9 +53,8 @@ FROM employees AS e -- Branching out to employees
               ON e.emp_no = dm.emp_no
          JOIN departments AS d -- Branching out from dept_manager to departments via dept_no
               ON dm.dept_no = d.dept_no
-WHERE e.emp_no = dm.emp_no
-  AND dm.to_date = '9999-01-01'
-  AND s.to_date = '9999-01-01'
+WHERE dm.to_date > now()
+  AND s.to_date > now()
 ORDER BY d.dept_name;
 
 
