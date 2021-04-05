@@ -41,7 +41,9 @@ GROUP BY t.title;
 # dpt_manager
 # departments
 
-SELECT d.dept_name, CONCAT(e.first_name, ' ', e.last_name) AS 'Department Manager', s.salary
+SELECT d.dept_name,
+       CONCAT(e.first_name, ' ', e.last_name) AS 'Department Manager',
+       s.salary
 FROM employees AS e -- Branching out to employees
          JOIN salaries AS s -- Branching out from employees to salaries via emp_no
               ON e.emp_no = s.emp_no
@@ -62,8 +64,8 @@ ORDER BY d.dept_name;
 # departments
 # dept_manager
 
-SELECT CONCAT(e.first_name, ' ', e.last_name) AS 'Employee',
-       d.dept_name AS Department,
+SELECT CONCAT(e.first_name, ' ', e.last_name)       AS 'Employee',
+       d.dept_name                                  AS Department,
        CONCAT(mgmt.first_name, ' ', mgmt.last_name) AS 'Manager'
 FROM employees AS e -- Branching to employees
          JOIN dept_emp AS de -- Branching from employees to dept_emp via emp_no
@@ -72,7 +74,8 @@ FROM employees AS e -- Branching to employees
               ON de.dept_no = d.dept_no
          JOIN dept_manager AS dm -- Branching from departments to dept_manager via dept_no
               ON d.dept_no = dm.dept_no
-        JOIN employees AS mgmt -- rejoining employees as new alias mgmt
-            ON dm.emp_no = mgmt.emp_no
+         JOIN employees AS mgmt -- rejoining employees as new alias mgmt
+              ON dm.emp_no = mgmt.emp_no
 WHERE de.to_date = '9999-01-01'
-  AND dm.to_date = '9999-01-01';
+  AND dm.to_date = '9999-01-01'
+ORDER BY d.dept_name;
