@@ -50,16 +50,10 @@ WHERE d.dept_no IN (
 
 # TODO: Find the first and last name of the employee with the highest salary.
 
-SELECT CONCAT(first_name, ' ', last_name) AS 'Highest Salary'
-FROM employees AS e
-WHERE e.emp_no IN (
-    SELECT s.emp_no
-    FROM salaries AS s
-    WHERE s.emp_no = e.emp_no
-    ORDER BY s.salary
-)
-LIMIT 1;
-
-select *
-FROM employees as e
-WHERE e.emp_no = '43624';
+SELECT first_name, last_name FROM employees
+WHERE emp_no = (
+    SELECT emp_no FROM salaries
+    WHERE salary = (
+        SELECT MAX(salary) FROM salaries
+    )
+);
