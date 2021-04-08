@@ -15,7 +15,7 @@ CREATE TABLE users_credentials
 (
     id       INT UNSIGNED NOT NULL AUTO_INCREMENT,
     email    VARCHAR(100) NOT NULL,
-    password VARCHAR(100) NOT NULL, -- Probably need to change type
+    password VARCHAR(100) NOT NULL,
     PRIMARY KEY (id)
 );
 INSERT INTO users_credentials (email, password)
@@ -93,9 +93,9 @@ VALUES (1, 1),
 
 # DROP TABLE ad_categories;
 
-# TODO ------------------------------------------------------ QUERIES:
+-- TODO ------------------------------------------------------ QUERIES:
 
-# TODO: For a given ad, what is the email address of the user that created it?
+-- TODO: For a given ad, what is the email address of the user that created it?
 
 SELECT u.email AS User, a.title AS 'Item'
 FROM users AS u
@@ -103,11 +103,15 @@ FROM users AS u
               on u.id = a.user_id
 WHERE a.title = 'honda car';
 
-# TODO: For a given ad, what category, or categories, does it belong to?
+-- TODO: For a given ad, what category, or categories, does it belong to?
 SELECT a.title AS 'Item', c.name AS 'Categories'
 FROM ads a
          JOIN categories c
               on a.id = c.id
 WHERE a.title = 'iphone';
 
+-- TODO: For a given category, show all the ads that are in that category
 
+-- SELECT *
+-- FROM ads a
+-- WHERE
